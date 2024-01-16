@@ -1,0 +1,5 @@
+<h1>Account activation</h1>
+<p>Hi {{ user.firstname }} {{ user.lastname }} ,</p>
+<p>Your registration on e-commerce website will be activated, please click on below link:</p>
+<p><a href="{{ absolute_url(path('verify_user', {token: token})) }}">{{ absolute_url(path('verify_user', {token: token})) }}</a></p>
+<p>This link will expire in 3 hours.</p>

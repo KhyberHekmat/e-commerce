@@ -4,14 +4,34 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' }}">
+
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ '/assets/css/styles.css' }}">
         {% endblock %}
 
         {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
+            <script src="{{ '/assets/js/bootstrap.bundle.min.js' }}" defer></script>
+            <script src="{{ '/assets/js/scripts.js' }}" defer></script>
         {% endblock %}
     </head>
     <body>
+        {% include('_partials/_nav.html.twig') %}
+        {% if app.user and app.user.isVerified == false %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="alert-message">
+                    <strong>Your account is not active</strong>, <a href="{{ path('resend_verif') }}">we send you a new link of activation.</a>
+                </div>
+            </div>
+        {% endif %}
+
+        {% include('_partials/_flash.html.twig') %}
+
         {% block body %}{% endblock %}
+
+        {% include('_partials/_footer.html.twig') %}
     </body>
 </html>
