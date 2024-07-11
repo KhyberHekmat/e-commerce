@@ -8,9 +8,9 @@
         
         {{ include('sub_category/_form.html.twig', {'button_label': 'Update'}) }}
         <br>
-        <a href="{{ path('app_sub_category_index') }}" class="btn btn-outline-info">back to list</a>
-        <br>
-        <br>
+        
         {{ include('sub_category/_delete_form.html.twig') }}
+        <br>
+        <a href="{{ path('app_sub_category_index') }}" class="btn btn-outline-info">back to list</a>
     </div>
 {% endblock %}

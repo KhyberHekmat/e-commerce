@@ -2,12 +2,12 @@
 
 {% block body %}
     <div class="container">
-        <h2>Updating category</h2>
-        <br>
+        <h1>Updating category</h1>
+        
         {{ form_start(form) }}
            {{ form_row(form.name, {'attr':{'class':'form form-control'}}) }}
-           <br>
-           <input type="submit" value="Update" class="btn btn-outline-primary">
+           
+           <input type="submit" value="Update" class="btn btn-outline-primary btn-block">
         {{ form_end(form) }}
     </div>
 

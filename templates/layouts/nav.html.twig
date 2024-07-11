@@ -18,10 +18,16 @@
                 Admin
               </a>
               <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ path('app_user') }}">Users</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ path('app_category') }}">Category</a></li>
                 <li><a class="dropdown-item" href="{{ path('app_category_new') }}">Add new category</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="{{ path('app_user') }}">Users</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_sub_category_index') }}">Sub categories</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_sub_category_new') }}">Add new sub-category</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{ path('app_product_index') }}">Products</a></li>
+                <li><a class="dropdown-item" href="{{ path('app_product_new') }}">Add new product</a></li>
               </ul>
             </li>
         {% endif %}
