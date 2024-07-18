@@ -37,5 +37,7 @@
         {{ include('product/_delete_form.html.twig') }}
 
         <a href="{{ path('app_product_index') }}" class="btn btn-outline-info">back to list</a>
+
+        <a href="{{ path('product_stock_history',{'id':product.id}) }}" class="btn btn-outline-info">product history</a>
     </div>
 {% endblock %}

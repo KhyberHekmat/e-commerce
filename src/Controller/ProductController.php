@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\ProductHistory;
-use App\Form\Product1Type;
+use App\Form\ProductType;
 use App\Form\ProductHistoryType;
+use App\Form\ProductUpdateType;
+use App\Repository\ProductHistoryRepository;
 use App\Repository\ProductRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +34,7 @@ class ProductController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $product = new Product();
-        $form = $this->createForm(Product1Type::class, $product);
+        $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -90,7 +92,7 @@ class ProductController extends AbstractController
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Product1Type::class, $product);
+        $form = $this->createForm(ProductUpdateType::class, $product);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -155,5 +157,17 @@ class ProductController extends AbstractController
                 ]
 
             );
+    }
+
+    #[Route('/product/{id}/stock/history', name: 'product_stock_history', methods:['GET'])]
+    public function productHistory($id, ProductRepository $productRepository, ProductHistoryRepository $prHistoryRepo):Response
+    {
+        $product = $productRepository->find($id);
+        $productHistory=$prHistoryRepo->findBy(['product' => $product], ['id' => 'DESC']);
+        
+        return $this->render('product/productStockHistory.html.twig',[
+            'productHistory' => $productHistory,
+            'product' => $product
+        ]);
     }
 }

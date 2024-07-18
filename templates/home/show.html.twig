@@ -1,9 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Music Instruments{% endblock %}
+    {% block title %}Show product {% endblock %}
 
 {% block body %}
     <div class="container">
+
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-5">
+                <img src="{{ asset('uploads/images/'~product.photo) }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                <div class="card-body">
+                    <h1 class="card-title text-success">{{ product.name }}</h1>
+                    <p class="card-text">{{ product.description }}</p>
+                    <h3>{{ product.price }} EUR</h3>
+                    <a href="" class="text-success">add to cart</a>
+                   
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <h2> Latest added products</h2>
+
         <div class="row">
             
             {% for product in products %}
@@ -21,4 +41,4 @@
             {% endfor %}
         </div>
     </div>
-{% endblock %}
+{% endblock  %}

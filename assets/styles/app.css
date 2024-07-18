@@ -1,5 +1,8 @@
-body {
-  /* background-color: skyblue; */
+.container {
+  margin-top: 30px;
+}
+table {
+  margin-top: 20px;
 }
 .login-form {
   width: 400px;
@@ -15,9 +18,10 @@ body {
   height: 100vh;
 }
 
-h1 {
-  margin-top: 20px;
-  margin-bottom: 20px;
+h1,
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 a.btn-outline-info,
@@ -37,4 +41,21 @@ td > a.btn-outline-info,
 a.btn-outline-primary,
 a.btn-outline-danger {
   margin-top: auto;
+}
+
+.dropdown-menu li {
+  position: relative;
+}
+.dropdown-menu .dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -7px;
+}
+.dropdown-menu .dropdown-submenu-left {
+  right: 100%;
+  left: auto;
+}
+.dropdown-menu > li:hover > .dropdown-submenu {
+  display: block;
 }
