@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Add new category</h1>
+        
+        {{ form_start(form) }}
+           {{ form_row(form.name, {'attr':{'class':'form form-control'}}) }}
+           
+           <input type="submit" value="Save" class="btn btn-outline-primary btn-block"> |
+           <a href="{{ path('app_category') }}" class="btn btn-outline-primary">Back to category home page</a>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

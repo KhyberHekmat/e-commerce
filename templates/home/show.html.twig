@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}Show product {% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-5">
+                <img src="{{ asset('uploads/images/'~product.photo) }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-7">
+                <div class="card-body">
+                    <h1 class="card-title text-success">{{ product.name }}</h1>
+                    <p class="card-text">{{ product.description }}</p>
+                    <h3>{{ product.price }} EUR</h3>
+                    <a href="" class="text-success">add to cart</a>
+                   
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <h2> Latest added products</h2>
+
+        <div class="row">
+            
+            {% for product in products %}
+                <div class="col-sm-6 mb-3 mb-sm-0 mt-4">
+                    <div class="card">
+                        <img src="{{ asset('uploads/images/'~product.photo) }}" class="card-img-top" alt="Product Image" height="220vh">
+                        <div class="card-body">
+                           <a style="text-decoration: none; color:green;" href="{{ path('app_home_product_show',{'id':product.id}) }}"> <h5 class="card-title">{{ product.name }}</h5></a>
+                            <p class="card-text">{{ product.description|slice(0,60) }}</p>
+                            <h3>{{ product.price }} EUR</h3>
+                            <a href="#" class="text-success">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock  %}
