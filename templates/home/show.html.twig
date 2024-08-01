@@ -15,7 +15,7 @@
                     <h1 class="card-title text-success">{{ product.name }}</h1>
                     <p class="card-text">{{ product.description }}</p>
                     <h3>{{ product.price }} EUR</h3>
-                    <a href="" class="text-success">add to cart</a>
+                    <a href="{{ path('app_cart_new',{'id':product.id}) }}" class="text-success text-decoration-none">Add to cart</a>
                    
                 </div>
                 </div>
@@ -34,7 +34,7 @@
                            <a style="text-decoration: none; color:green;" href="{{ path('app_home_product_show',{'id':product.id}) }}"> <h5 class="card-title">{{ product.name }}</h5></a>
                             <p class="card-text">{{ product.description|slice(0,60) }}</p>
                             <h3>{{ product.price }} EUR</h3>
-                            <a href="#" class="text-success">Add to cart</a>
+                            <a href="{{ path('app_cart_new',{'id':product.id}) }}" class="text-success text-decoration-none">Add to cart</a>
                         </div>
                     </div>
                 </div>
