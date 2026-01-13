@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users!{% endblock %}
+
+{% block body %}
+   
+    <div class="container">
+        
+        <h1>Users</h1>
+      
+        {% include 'layouts/_flash_message.html.twig' %}
+        <br>
+        <table class="table table-border">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% if ('ROLE_ADMIN') in user.roles %}
+                                <span class="text-primary">Administrator</span>
+                            {% elseif ('ROLE_EDITOR') in user.roles %}
+                                <span class="text-success">Editor</span>
+                            {% elseif ('ROLE_USER') in user.roles %}
+                                <span class="text-secondary">Client</span>
+                            {% endif %}
+                            <!-- {% for role in user.roles %}
+                                {{ role }}
+                            {% endfor %} -->
+                        </td>
+                        <td>
+                            {% if ('ROLE_ADMIN' in user.roles) == false %}
+                                {% if('ROLE_EDITOR' in user.roles)== false %}
+                                    <a href="{{ path('app_user_to_editor', {'id':user.id}) }}" onclick="return confirm('Do you want to add the editor role?')" class="btn btn-outline-primary">Add as Editor</a>
+                                {% else %}
+                                    <a href="{{ path('app_user_remove_editor', {'id':user.id}) }}" onclick="return confirm('Do you want to remove the editor role?')" class="btn btn-outline-danger">Remove Editor</a>
+                                {% endif %}
+                                <a href="{{ path('app_user_remove', {'id':user.id}) }}" onclick="return confirm('Do you want to delete the user?')" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
